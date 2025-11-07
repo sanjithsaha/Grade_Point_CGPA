@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+public class EasyCGPA {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter Student ID: ");
+        String id = in.nextLine();
+
+        System.out.print("Enter number of courses: ");
+        int n = in.nextInt();
+         double totalCredit = 0, totalPoints = 0;
+         for (int i = 1; i <= n; i++) {
+            System.out.println("\nCourse " + i + ":");
+            System.out.print("Credit (Max 3): ");
+            double credit = in.nextDouble();
+
+            System.out.print("CT (Max 30): ");
+            double ct = in.nextDouble();
+
+            System.out.print("AT (Max 10): ");
+            double at = in.nextDouble();
+
+            System.out.print("FE (Max 60): ");
+            double fe = in.nextDouble();
+
+            double totalMarks = ct + at + fe;
+
+            double gpa;
+            if (totalMarks >= 80) gpa = 4.0;
+            else if (totalMarks >= 75) gpa = 3.75;
+            else if (totalMarks >= 70) gpa = 3.5;
+            else if (totalMarks >= 65) gpa = 3.25;
+            else if (totalMarks >= 60) gpa = 3.0;
+            else if (totalMarks >= 55) gpa = 2.75;
+            else if (totalMarks >= 50) gpa = 2.5;
+            else if (totalMarks >= 45) gpa = 2.25;
+            else if (totalMarks >= 40) gpa = 2.0;
+            else gpa = 0.0;
+
+            totalCredit += credit;
+            totalPoints += gpa * credit;
+        }
+
+        double cgpa = totalPoints / totalCredit;
+        
+        String grade;
+        if (cgpa >= 4.00) grade = "A+";
+        else if (cgpa >= 3.75) grade = "A";
+        else if (cgpa >= 3.50) grade = "A-";
+        else if (cgpa >= 3.25) grade = "B+";
+        else if (cgpa >= 3.00) grade = "B";
+        else if (cgpa >= 2.75) grade = "B-";
+        else if (cgpa >= 2.50) grade = "C+";
+        else if (cgpa >= 2.25) grade = "C";
+        else if (cgpa >= 2.00) grade = "D";
+        else grade = "F";
+
+        System.out.println("\n--- Result Summary ---");
+        System.out.println("Student ID: " + id);
+        System.out.println("Credit Taken: " + totalCredit);
+        System.out.println("CGPA: " + String.format("%.2f", cgpa));
+        System.out.println("Grade: " + grade);
+        in.close();
+    }
+}
